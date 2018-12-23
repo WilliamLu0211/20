@@ -21,17 +21,18 @@ int main() {
     from_client = server_handshake( &to_client );
 
     if (from_client){
-      while ( read(from_client, str, sizeof(str)) ){
-	printf("[subserver %d] Message Received: %s", getpid(), str);
-	char* dummy = str;
-	while (*dummy){
-	  *dummy += 5;
-	  dummy ++;
-	}
-	printf("[subserver %d] Message Sent: %s\n", getpid(), str);
-	write(to_client, str, sizeof(str));
 
+      while ( read(from_client, str, sizeof(str)) ){
+	      printf("[subserver %d] Message Received: %s", getpid(), str);
+	      char* dummy = str;
+	      while (*dummy){
+	        *dummy += 5;
+	        dummy ++;
+	      }
+      	printf("[subserver %d] Message Sent: %s\n", getpid(), str);
+      	write(to_client, str, sizeof(str));
       }
+
       break;
     }
   }
